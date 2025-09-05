@@ -1,0 +1,723 @@
+/* 技能展示页面样式 - 基于mizuki主题设计 */
+
+/* 基础变量定义 */
+:root {
+    --skills-primary-color: #3b82f6;
+    --skills-secondary-color: #6366f1;
+    --skills-accent-color: #8b5cf6;
+    --skills-success-color: #10b981;
+    --skills-warning-color: #f59e0b;
+    --skills-error-color: #ef4444;
+    --skills-info-color: #06b6d4;
+    
+    --skills-bg-primary: #ffffff;
+    --skills-bg-secondary: #f8fafc;
+    --skills-bg-tertiary: #f1f5f9;
+    --skills-text-primary: #1e293b;
+    --skills-text-secondary: #64748b;
+    --skills-text-muted: #94a3b8;
+    
+    --skills-border-color: #e2e8f0;
+    --skills-border-radius: 0.75rem;
+    --skills-border-radius-lg: 1rem;
+    --skills-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --skills-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --skills-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --skills-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    --skills-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --skills-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 暗色模式变量 */
+[data-theme="dark"], .dark-mode {
+    --skills-bg-primary: #0f172a;
+    --skills-bg-secondary: #1e293b;
+    --skills-bg-tertiary: #334155;
+    --skills-text-primary: #f1f5f9;
+    --skills-text-secondary: #cbd5e1;
+    --skills-text-muted: #94a3b8;
+    --skills-border-color: #334155;
+    --skills-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --skills-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --skills-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --skills-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+}
+
+/* 页面容器 */
+.skills-page-container {
+    min-height: 100vh;
+    background: var(--skills-bg-secondary);
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* 页面头部 */
+.skills-header {
+    background: linear-gradient(135deg, var(--skills-primary-color), var(--skills-secondary-color));
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+    border-radius: 0 0 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="40%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="100" height="20" fill="url(%23a)"/></svg>');
+    opacity: 0.1;
+}
+
+.skills-header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.skills-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.skills-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+/* 统计信息网格 */
+.skills-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.stat-card {
+    background: var(--skills-bg-primary);
+    border-radius: var(--skills-border-radius-lg);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--skills-shadow-lg);
+    border: 1px solid var(--skills-border-color);
+    transition: var(--skills-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--stat-color, var(--skills-primary-color)), var(--stat-color-light, var(--skills-secondary-color)));
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--skills-shadow-xl);
+}
+
+.stat-total {
+    --stat-color: var(--skills-primary-color);
+    --stat-color-light: var(--skills-info-color);
+}
+
+.stat-expert {
+    --stat-color: var(--skills-error-color);
+    --stat-color-light: #fca5a5;
+}
+
+.stat-advanced {
+    --stat-color: var(--skills-warning-color);
+    --stat-color-light: #fbbf24;
+}
+
+.stat-experience {
+    --stat-color: var(--skills-accent-color);
+    --stat-color-light: #a78bfa;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--stat-color);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--skills-text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* 技能部分 */
+.skills-section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--skills-text-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 3px;
+    background: linear-gradient(90deg, var(--skills-primary-color), var(--skills-secondary-color));
+    border-radius: 2px;
+}
+
+/* 高级技能网格 */
+.advanced-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.advanced-skill-card {
+    background: var(--skills-bg-primary);
+    border-radius: var(--skills-border-radius-lg);
+    padding: 2rem;
+    box-shadow: var(--skills-shadow-lg);
+    border: 1px solid var(--skills-border-color);
+    transition: var(--skills-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.advanced-skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--skills-shadow-xl);
+}
+
+.advanced-skill-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.skill-icon-container {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--skills-border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.skill-icon-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0.1;
+    background: var(--skill-color, var(--skills-primary-color));
+}
+
+.skill-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.skill-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
+}
+
+.skill-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--skills-text-primary);
+    margin: 0;
+}
+
+.skill-level-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+.skill-level-expert {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+}
+
+.skill-level-advanced {
+    background: rgba(245, 158, 11, 0.1);
+    color: #d97706;
+}
+
+.skill-level-intermediate {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+}
+
+.skill-level-beginner {
+    background: rgba(59, 130, 246, 0.1);
+    color: #2563eb;
+}
+
+.skill-description {
+    color: var(--skills-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.skill-experience-section {
+    margin-bottom: 1rem;
+}
+
+.skill-experience-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.skill-experience-label {
+    font-size: 0.75rem;
+    color: var(--skills-text-secondary);
+    font-weight: 500;
+}
+
+.skill-experience-value {
+    font-size: 0.75rem;
+    color: var(--skills-text-primary);
+    font-weight: 600;
+}
+
+.skill-progress-bar {
+    width: 100%;
+    height: 0.5rem;
+    background: var(--skills-bg-tertiary);
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--skill-color, var(--skills-primary-color));
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.skill-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+.skill-certifications {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.certification-badge {
+    padding: 0.25rem 0.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* 技能分类 */
+.skills-categories {
+    margin-bottom: 4rem;
+}
+
+.category-section {
+    margin-bottom: 3rem;
+}
+
+.category-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--skills-text-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.category-count {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--skills-text-secondary);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: var(--skills-bg-primary);
+    border-radius: var(--skills-border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--skills-shadow-md);
+    border: 1px solid var(--skills-border-color);
+    transition: var(--skills-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--skills-shadow-lg);
+}
+
+.skill-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.skill-card .skill-icon-container {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
+}
+
+.skill-card .skill-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.skill-card .skill-name {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.skill-card .skill-description {
+    margin-bottom: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.skill-card .skill-progress-bar {
+    height: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-projects-info {
+    font-size: 0.75rem;
+    color: var(--skills-text-secondary);
+}
+
+/* 技能分布 */
+.skills-distribution {
+    background: var(--skills-bg-primary);
+    border-radius: var(--skills-border-radius-lg);
+    padding: 2rem;
+    box-shadow: var(--skills-shadow-lg);
+    border: 1px solid var(--skills-border-color);
+}
+
+.distribution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.distribution-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--skills-text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.distribution-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.distribution-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.distribution-label {
+    width: 5rem;
+    font-size: 0.875rem;
+    color: var(--skills-text-secondary);
+    flex-shrink: 0;
+}
+
+.distribution-progress {
+    flex: 1;
+    height: 0.5rem;
+    background: var(--skills-bg-tertiary);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.distribution-fill {
+    height: 100%;
+    border-radius: inherit;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.distribution-count {
+    width: 3rem;
+    text-align: right;
+    font-size: 0.875rem;
+    color: var(--skills-text-primary);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* 等级分布颜色 */
+.level-expert { background: var(--skills-error-color); }
+.level-advanced { background: var(--skills-warning-color); }
+.level-intermediate { background: var(--skills-success-color); }
+.level-beginner { background: var(--skills-primary-color); }
+
+/* 分类分布颜色 */
+.category-frontend { background: #3b82f6; }
+.category-backend { background: #10b981; }
+.category-database { background: #f59e0b; }
+.category-tools { background: #8b5cf6; }
+.category-other { background: #ef4444; }
+
+/* 动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes countUp {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .skills-title {
+        font-size: 2.5rem;
+    }
+    
+    .skills-subtitle {
+        font-size: 1rem;
+    }
+    
+    .skills-stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1.5rem;
+    }
+    
+    .advanced-skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .advanced-skill-card {
+        padding: 1.5rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .distribution-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .skills-distribution {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-page-container {
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+    }
+    
+    .skills-header {
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+    
+    .skills-title {
+        font-size: 2rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .advanced-skill-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .skill-header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+/* 加载动画 */
+.skills-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.loading-spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--skills-border-color);
+    border-top: 2px solid var(--skills-primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 错误状态 */
+.skills-error {
+    text-align: center;
+    padding: 3rem;
+    color: var(--skills-text-secondary);
+}
+
+.error-icon {
+    font-size: 3rem;
+    color: var(--skills-error-color);
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.error-description {
+    font-size: 0.875rem;
+    color: var(--skills-text-muted);
+}
+
+/* 无障碍优化 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    :root {
+        --skills-border-color: #000000;
+        --skills-text-secondary: #000000;
+    }
+    
+    [data-theme="dark"], .dark-mode {
+        --skills-border-color: #ffffff;
+        --skills-text-secondary: #ffffff;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .skills-page-container {
+        background: white;
+        color: black;
+    }
+    
+    .skills-header {
+        background: none;
+        color: black;
+    }
+    
+    .stat-card,
+    .skill-card,
+    .advanced-skill-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .skill-progress-fill,
+    .distribution-fill {
+        background: #666 !important;
+    }
+}

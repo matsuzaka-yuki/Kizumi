@@ -1,0 +1,67 @@
+/*
+ * Font Awesome 4.x to 6.x Compatibility Layer
+ * This file provides compatibility for Font Awesome 4.x icon names in Font Awesome 6.x
+ */
+
+/* Base Font Awesome classes */
+.fa {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands";
+  font-weight: 900;
+  font-style: normal;
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Brand icons need different font-family and weight */
+.fa-qq, .fa-weibo, .fa-weixin, .fa-github, .fa-telegram, .fa-instagram,
+.fa-js-square, .fa-react, .fa-vuejs, .fa-html5, .fa-css3-alt, .fa-sass,
+.fa-bootstrap, .fa-php, .fa-node-js, .fa-python, .fa-java, .fa-git-alt,
+.fa-docker, .fa-linux, .fa-wordpress, .fa-cc-visa, .fa-android, .fa-apple,
+.fa-aws, .fa-laravel, .fa-jenkins, .fa-jira, .fa-confluence, .fa-figma,
+.fa-js, .fa-angular {
+  font-family: "Font Awesome 6 Brands";
+  font-weight: 400;
+}
+
+/* Regular icons (outlined) */
+.fa-user, .fa-comments-o, .fa-clock-o, .fa-sun-o, .fa-moon-o,
+.fa-dot-circle-o, .fa-pencil-square-o, .fa-smile-o, .fa-files-o,
+.fa-check-square-o, .fa-picture-o {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 400;
+}
+
+/* Icon name mappings for changed names */
+.fa-clock-o:before { content: "\f017"; } /* clock */
+.fa-sun-o:before { content: "\f185"; } /* sun */
+.fa-moon-o:before { content: "\f186"; } /* moon */
+.fa-dot-circle-o:before { content: "\f192"; } /* dot-circle */
+.fa-pencil-square-o:before { content: "\f044"; } /* edit */
+.fa-comments-o:before { content: "\f086"; } /* comments */
+.fa-smile-o:before { content: "\f118"; } /* smile */
+.fa-files-o:before { content: "\f0c5"; } /* copy */
+.fa-check-square-o:before { content: "\f14a"; } /* check-square */
+.fa-picture-o:before { content: "\f03e"; } /* image */
+.fa-gear:before { content: "\f013"; } /* cog */
+.fa-wechat:before { content: "\f1d7"; } /* weixin */
+.fa-mobile-alt:before { content: "\f3cd"; } /* mobile-screen */
+
+/* Size classes */
+.fa-2x { font-size: 2em; }
+.fa-3x { font-size: 3em; }
+
+/* Animation classes */
+.fa-spin {
+  animation: fa-spin 2s infinite linear;
+}
+
+@keyframes fa-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner {
+  animation: fa-spin 2s infinite linear;
+}
