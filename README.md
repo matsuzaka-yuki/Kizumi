@@ -1,7 +1,7 @@
 
 
 # Kizumi WordPress 主题
-主题文档：[https://docs.kizumi.mysqil.com](https://docs.kizumi.mysqil.com)(暂时没有,开发中)
+主题文档：[https://docs.kizumi.mysqil.com](https://docs.kizumi.mysqil.com)
 
 
 ![主题版本](https://img.shields.io/badge/版本-1.0-blue.svg)
