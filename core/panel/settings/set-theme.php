@@ -41,6 +41,6 @@ $options[] = array(
     'desc' => __('
      <p>当前版本：'.$THEME_VERSION.'</p>
      <p>查看主题：<a href="http://docs.kizumi.mysqil.com" target="_blank" rel="external nofollow" class="url">使用文档</a></p>		
-     <p>主题QQ群：887633876</p>
+     <p>主题QQ群：1007524064</p>
     ', 'ui_kizumi_com'),
     'type' => 'info');		
